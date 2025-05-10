@@ -1,0 +1,23 @@
+<!DOCTYPE html> 
+<html>
+    <head>
+        <meta charset="UTF-8"> 
+        <title>Test CORS</title> 
+    </head> 
+    <body> 
+        <h1>Test d'appel API avec CORS</h1> 
+        <div id="result">Chargement...</div> 
+        <script> fetch('http://localhost:3000/personnes')
+        .then(response => { if (!response.ok) { 
+            throw new Error(`Erreur HTTP: ${response.status}`); } 
+            return response.json(); 
+        })
+         .then(data => { 
+            console.log(data); 
+            document.getElementById('result').textContent = JSON.stringify(data, null, 2); 
+            }) 
+            .catch(error => { console.error('Erreur lors du fetch :', error); 
+            document.getElementById('result').textContent = 'Erreur : ' + error.message; 
+            }); </script> 
+    </body> 
+</html>
